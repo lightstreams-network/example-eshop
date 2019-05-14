@@ -1,26 +1,67 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import StateNodeProvider from './pages/NodeProvider';
+import StateAuth from './pages/Auth';
+import Shop from "./pages/Shop";
+
+const stateNameProvider = 'provider';
+const stateNameAuth = 'auth';
+const stateNameShop = 'shop';
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: stateNameShop,
+      nodeUrl: "https://localhost:9191",
+      account: ""
+    };
+
+    this.navigateToAuth = this.navigateToAuth.bind(this);
+    this.login = this.login.bind(this);
+  }
+
+  navigateToAuth(nodeUrl) {
+    this.setState((state, props) => ({
+      name: stateNameAuth,
+      nodeUrl: nodeUrl,
+    }));
+  }
+
+  login(account) {
+    this.setState((state, props) => ({
+      name: stateNameShop,
+      account: account,
+    }));
+  }
+
+  render() {
+    if (this.state.name === stateNameProvider) {
+      return (
+        <StateNodeProvider nodeUrl={this.state.nodeUrl} onSubmit={this.navigateToAuth} />
+      );
+    }
+
+    if (this.state.name === stateNameAuth) {
+      return (
+        <StateAuth
+          nodeUrl={this.state.nodeUrl}
+          onLogin={this.login}
+        />
+      );
+    }
+
+    if (this.state.name === stateNameShop) {
+      return (
+        <Shop
+          nodeUrl={this.state.nodeUrl}
+          account={this.state.account}
+        />
+      );
+    }
+  }
 }
 
 export default App;

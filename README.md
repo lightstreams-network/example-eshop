@@ -1,4 +1,11 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Lightstreams eShop App
+
+Demonstrating how Lightstreams tech stack can be leveraged to used to build a decentralized eShop for managing, selling and purchasing of digital content.
+
+## Install
+```
+npm i
+```
 
 ## Available Scripts
 

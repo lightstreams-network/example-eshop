@@ -1,11 +1,17 @@
 {
-  "name": "app-eshop",
+  "name": "lightstreams-app-eshop",
+  "description": "Example of an eShop application built using the Lightstreams SDK",
   "version": "0.1.0",
-  "private": true,
+  "author": "Lukas Lukac",
+  "private": false,
   "dependencies": {
+    "baseui": "^6.17.2",
+    "lightstreams-js-sdk": "git+ssh://git@github.com/lightstreams-network/lightstreams-js-sdk.git#master",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "react-scripts": "3.0.1",
+    "styletron-engine-atomic": "^1.1.2",
+    "styletron-react": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
