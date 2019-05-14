@@ -1,6 +1,6 @@
-# Lightstreams eShop App
+# Lightstreams P2P eShop App
 
-Demonstrating how Lightstreams tech stack can be leveraged to used to build a decentralized eShop for managing, selling and purchasing of digital content.
+Demonstrating how Lightstreams tech stack can be practically used in order to build a decentralized eShop for managing, selling and purchasing of digital content.
 
 ## Install
 ```

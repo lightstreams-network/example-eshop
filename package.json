@@ -1,6 +1,6 @@
 {
   "name": "lightstreams-app-eshop",
-  "description": "Example of an eShop application built using the Lightstreams SDK",
+  "description": "Example of a peer-to-peer eShop application built using the Lightstreams SDK",
   "version": "0.1.0",
   "author": "Lukas Lukac",
   "private": false,
