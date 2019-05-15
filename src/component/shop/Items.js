@@ -27,8 +27,8 @@ class Item extends React.Component {
 
 class Items extends React.Component {
   render() {
-    const Items = this.props.items.map((item) =>
-      <Item item={item} />
+    const Items = this.props.items.map((item, i) =>
+      <Item item={item} key={i} />
     );
 
     return (

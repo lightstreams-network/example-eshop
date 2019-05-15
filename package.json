@@ -6,6 +6,7 @@
   "private": false,
   "dependencies": {
     "baseui": "^6.17.2",
+    "jquery": "^3.4.1",
     "lightstreams-js-sdk": "git+ssh://git@github.com/lightstreams-network/lightstreams-js-sdk.git#master",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

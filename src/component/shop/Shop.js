@@ -4,6 +4,16 @@ import shopIcon from './../../img/shop-icon.png';
 import Items from "./Items";
 
 class Shop extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.refreshShopBalance = this.refreshShopBalance.bind(this);
+  }
+
+  refreshShopBalance() {
+    this.props.onRefreshBalance(this.props.shop);
+  }
+
   render() {
     return (
       <main className="container">
@@ -15,7 +25,10 @@ class Shop extends React.Component {
               <div>{this.props.shop.description}</div>
               <small>{this.props.shop.address}</small>
             </div>
-            <button type="button" className="btn btn-md btn-secondary">Sell content</button>
+            <div className="button-group">
+              <button type="button" className="btn btn-md btn-primary mr-3">Sell content</button>
+              <button type="button" className="btn btn-md btn-secondary btn-info" onClick={this.refreshShopBalance}>Refresh balance</button>
+            </div>
           </div>
         </div>
 
