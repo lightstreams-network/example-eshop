@@ -16,12 +16,13 @@ class Shop extends React.Component {
 
   render() {
     return (
-      <main className="container">
+      <main className="container mt-5">
+        <hr />
         <div className="d-flex align-items-center p-3 my-3 bg-purple rounded shadow-sm">
           <img className="mr-3" src={shopIcon} alt="" width="72" height="72" />
-          <div className="d-flex justify-content-between align-items-top w-100">
+          <div className="d-flex text-left justify-content-between align-items-top w-100">
             <div>
-              <h5 className="mb-0">{this.props.shop.name} <small>({this.props.shop.balance} PHT)</small></h5>
+              <h4 className="mb-0">{this.props.shop.name} <small>({this.props.shop.balance} PHT)</small></h4>
               <div>{this.props.shop.description}</div>
               <small>{this.props.shop.address}</small>
             </div>

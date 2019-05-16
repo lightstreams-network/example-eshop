@@ -71,8 +71,8 @@ class NewShopModal extends React.Component {
                 <input value={this.state.description} onChange={this.handleDescriptionChange} id="description" refs="description" className="form-control" placeholder="First decentralized eShop for selling and purchasing music." required />
                 <hr />
 
-                <h6 className="h6 mb-3 font-weight-normal">Authorize the shop creation from account {this.props.account} with password:</h6>
-                <label htmlFor="password" className="sr-only">Authorize the shop creation from account {this.props.account} with password:</label>
+                <h6 className="h6 mb-3 font-weight-normal">Authorize the shop creation from account <strong>{this.props.account}</strong> with password:</h6>
+                <label htmlFor="password" className="sr-only">Authorize the shop creation from account <strong>{this.props.account}</strong> with password:</label>
                 <input value={this.state.password} onChange={this.handlePasswordChange} id="password" refs="password" type="password" className="form-control" required />
 
                 <div className="modal-footer">

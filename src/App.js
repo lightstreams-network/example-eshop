@@ -15,8 +15,8 @@ class App extends React.Component {
 
     this.state = {
       name: stateNameShop,
-      nodeUrl: "https://localhost:9191",
-      account: ""
+      nodeUrl: "https://gateway.sirius.lightstreams.io",
+      account: "0xd119b8b038d3a67d34ca1d46e1898881626a082b"
     };
 
     this.navigateToAuth = this.navigateToAuth.bind(this);
@@ -56,6 +56,7 @@ class App extends React.Component {
     if (this.state.name === stateNameShop) {
       return (
         <Shop
+          db={this.props.db}
           nodeUrl={this.state.nodeUrl}
           account={this.state.account}
         />
