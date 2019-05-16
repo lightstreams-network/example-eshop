@@ -23,6 +23,7 @@ class ShopUI extends React.Component {
     this.refreshShopBalance = this.refreshShopBalance.bind(this);
     this.refreshAccountBalance = this.refreshAccountBalance.bind(this);
     this.handleCreate = this.handleCreate.bind(this);
+    this.handleSell = this.handleSell.bind(this);
   }
 
   handleCreate(name, description, password) {
@@ -49,6 +50,44 @@ class ShopUI extends React.Component {
         });
 
         this.deactivateLoading();
+      })
+      .catch((e) => {
+        alert(e.toString());
+      });
+  }
+
+  handleSell(shopAddr, account, name, price, file, password) {
+    this.activateLoading();
+
+    const self = this;
+
+    const formData = new FormData();
+    formData.append('owner', account);
+    formData.append('password', password);
+    formData.append('file', file);
+
+    fetch(this.props.nodeUrl+"/storage/add", {method: 'POST', body: formData})
+      .then(res => {
+        const priceWei = self.web3.utils.toWei(price.toString(), 'ether');
+
+        res.json().then(res => {
+          const acl = res.acl;
+          const meta = res.meta;
+
+          self.leth.shop.sell(shopAddr, account, password, acl, priceWei)
+            .then(res => {
+              self.db.ref('shops/' + shopAddr + '/items/' + acl).set({
+                name: name,
+                meta: meta,
+                price: priceWei
+              });
+
+              self.deactivateLoading();
+            })
+            .catch((e) => {
+              alert(e.toString());
+            });
+        });
       })
       .catch((e) => {
         alert(e.toString());
@@ -98,8 +137,9 @@ class ShopUI extends React.Component {
         rowSnapshot.child("items").forEach((rowSnapshot) => {
           const item = rowSnapshot.val();
           const acl = rowSnapshot.key;
+          const price = self.web3.utils.fromWei(item.price, 'ether');
 
-          items.push(newItemObj(item.filename, item.meta, acl, item.price));
+          items.push(newItemObj(item.name, item.meta, acl, price));
         });
 
         const newShop = newShopObj(
@@ -155,7 +195,7 @@ class ShopUI extends React.Component {
     }
 
     const Shops = this.state.shops.map((shop, i) =>
-      <Shop shop={shop} key={i} onRefreshBalance={this.refreshShopBalance} />
+      <Shop shop={shop} account={this.props.account} key={i} onRefreshBalance={this.refreshShopBalance} onSell={this.handleSell} />
     );
 
     return (

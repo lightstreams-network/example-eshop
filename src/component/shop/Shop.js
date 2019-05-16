@@ -2,6 +2,7 @@ import React from "react";
 
 import shopIcon from './../../img/shop-icon.png';
 import Items from "./Items";
+import SellItemModal from "./Sell";
 
 class Shop extends React.Component {
   constructor(props) {
@@ -27,13 +28,15 @@ class Shop extends React.Component {
               <small>{this.props.shop.address}</small>
             </div>
             <div className="button-group">
-              <button type="button" className="btn btn-md btn-primary mr-3">Sell content</button>
+              <button type="button" className="btn btn-md btn-primary mr-3" data-toggle="modal" data-target={"#sellItem"+this.props.shop.address}>Sell content</button>
               <button type="button" className="btn btn-md btn-secondary btn-info" onClick={this.refreshShopBalance}>Refresh balance</button>
             </div>
           </div>
         </div>
 
         <Items items={this.props.shop.items} />
+
+        <SellItemModal shopAddr={this.props.shop.address} account={this.props.account} onSell={this.props.onSell} />
       </main>
     );
   }
