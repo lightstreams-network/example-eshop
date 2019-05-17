@@ -14,7 +14,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      name: stateNameShop,
+      name: stateNameProvider,
       nodeUrl: "https://gateway.sirius.lightstreams.io",
       account: "0xd119b8b038d3a67d34ca1d46e1898881626a082b"
     };

@@ -16,6 +16,11 @@ class Shop extends React.Component {
   }
 
   render() {
+    let SellButton = null;
+    if (this.props.shop.owner === this.props.account) {
+      SellButton = <button type="button" className="btn btn-md btn-primary mr-3" data-toggle="modal" data-target={"#sellItem"+this.props.shop.address}>Sell content</button>;
+    }
+
     return (
       <main className="container mt-5">
         <hr />
@@ -28,7 +33,7 @@ class Shop extends React.Component {
               <small>{this.props.shop.address}</small>
             </div>
             <div className="button-group">
-              <button type="button" className="btn btn-md btn-primary mr-3" data-toggle="modal" data-target={"#sellItem"+this.props.shop.address}>Sell content</button>
+              {SellButton}
               <button type="button" className="btn btn-md btn-secondary btn-info" onClick={this.refreshShopBalance}>Refresh balance</button>
             </div>
           </div>
