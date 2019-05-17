@@ -24,6 +24,7 @@ class ShopUI extends React.Component {
     this.refreshAccountBalance = this.refreshAccountBalance.bind(this);
     this.handleCreate = this.handleCreate.bind(this);
     this.handleSell = this.handleSell.bind(this);
+    this.handleBuy = this.handleBuy.bind(this);
   }
 
   handleCreate(name, description, password) {
@@ -88,6 +89,23 @@ class ShopUI extends React.Component {
               alert(e.toString());
             });
         });
+      })
+      .catch((e) => {
+        alert(e.toString());
+      });
+  }
+
+  handleBuy(shopAddr, account, password, acl) {
+    this.activateLoading();
+
+    const self = this;
+    this.leth.shop.buy(shopAddr, account, password, acl)
+      .then((res) => {
+        if (!res.success) {
+          alert(res.error);
+        }
+
+        self.deactivateLoading();
       })
       .catch((e) => {
         alert(e.toString());
@@ -195,7 +213,13 @@ class ShopUI extends React.Component {
     }
 
     const Shops = this.state.shops.map((shop, i) =>
-      <Shop shop={shop} account={this.props.account} key={i} onRefreshBalance={this.refreshShopBalance} onSell={this.handleSell} />
+      <Shop
+        shop={shop}
+        account={this.props.account}
+        key={i}
+        onRefreshBalance={this.refreshShopBalance}
+        onSell={this.handleSell}
+        onBuy={this.handleBuy} />
     );
 
     return (
