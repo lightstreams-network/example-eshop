@@ -83,15 +83,15 @@ class SellItemModal extends React.Component {
 
                 <hr />
 
-                <h6 className="h6 mb-3 font-weight-normal">Authorize the sell activity from account <strong>{this.props.account}</strong> with password:</h6>
-                <label htmlFor="password" className="sr-only">Authorize the sell activity from account <strong>{this.props.account}</strong> with password:</label>
-                <input value={this.state.password} onChange={this.handlePasswordChange} id="password" refs="password" type="password" className="form-control" required />
-
-                <hr />
-
                 <h6 className="h6 mb-3 font-weight-normal">Select file to sell</h6>
                 <label htmlFor="name" className="sr-only">Select file to sell</label>
                 <input onChange={this.handleFileChange} type="file" refs="file" className="form-control" />
+
+                <hr />
+
+                <h6 className="h6 mb-3 font-weight-normal">Authorize the sell activity from account <strong>{this.props.account}</strong> with password:</h6>
+                <label htmlFor="password" className="sr-only">Authorize the sell activity from account <strong>{this.props.account}</strong> with password:</label>
+                <input value={this.state.password} onChange={this.handlePasswordChange} id="password" refs="password" type="password" className="form-control" required />
 
                 <div className="modal-footer">
                   <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
