@@ -6,8 +6,7 @@ class Auth extends React.Component {
     super(props);
 
     this.state = {
-      loginAccount: "",
-
+      loginAccount: "0xd119b8b038d3a67d34ca1d46e1898881626a082b",
     };
 
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
