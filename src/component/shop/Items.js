@@ -3,7 +3,25 @@ import React from "react";
 import BuyItemModal from "./Buy";
 
 class Item extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.hasAccess = this.hasAccess.bind(this);
+  }
+
+  hasAccess() {
+    return this.props.item.buyers.includes(this.props.account)
+      || this.props.shopOwner === this.props.account;
+  }
+
   render() {
+    let BuyOrView = null;
+    if (this.hasAccess()) {
+      BuyOrView = <button type="button" className="btn btn-md btn-success">View</button>;
+    } else {
+      BuyOrView = <button data-toggle="modal" data-target={"#buyItem"+this.props.item.acl} type="button" className="btn btn-md btn-primary">Buy</button>;
+    }
+
     return (
       <div className="media text-muted pt-3">
         <svg className="bd-placeholder-img mr-2 rounded" width="32" height="32"
@@ -18,7 +36,7 @@ class Item extends React.Component {
               <strong className="text-gray-dark">{this.props.item.name}</strong><br />
               <span>{this.props.item.meta}</span>
             </div>
-            <button data-toggle="modal" data-target={"#buyItem"+this.props.item.acl} type="button" className="btn btn-md btn-primary">Buy</button>
+            {BuyOrView}
           </div>
           <strong><span className="d-block mt-3">{this.props.item.price} PHT</span></strong>
         </div>
@@ -31,7 +49,7 @@ class Items extends React.Component {
   render() {
     const Items = this.props.items.map((item, i) =>
       <div key={i}>
-        <Item item={item} />
+        <Item item={item} account={this.props.account} shopOwner={this.props.shopOwner} />
         <BuyItemModal shopAddr={this.props.shopAddr} account={this.props.account} name={item.name} acl={item.acl} price={item.price} onBuy={this.props.onBuy} />
       </div>
     );

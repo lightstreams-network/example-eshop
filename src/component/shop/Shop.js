@@ -34,7 +34,7 @@ class Shop extends React.Component {
           </div>
         </div>
 
-        <Items items={this.props.shop.items} shopAddr={this.props.shop.address} account={this.props.account} onBuy={this.props.onBuy} />
+        <Items items={this.props.shop.items} shopAddr={this.props.shop.address} shopOwner={this.props.shop.owner} account={this.props.account} onBuy={this.props.onBuy} />
 
         <SellItemModal shopAddr={this.props.shop.address} account={this.props.account} onSell={this.props.onSell} />
       </main>

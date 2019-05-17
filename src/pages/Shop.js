@@ -103,7 +103,12 @@ class ShopUI extends React.Component {
       .then((res) => {
         if (!res.success) {
           alert(res.error);
+          return
         }
+
+        self.db.ref('shops/'+shopAddr+'/items/'+acl+'/buyers/'+account).set({
+          datetime: currDatetime()
+        });
 
         self.deactivateLoading();
       })
@@ -157,7 +162,12 @@ class ShopUI extends React.Component {
           const acl = rowSnapshot.key;
           const price = self.web3.utils.fromWei(item.price, 'ether');
 
-          items.push(newItemObj(item.name, item.meta, acl, price));
+          let buyers = [];
+          rowSnapshot.child("buyers").forEach((rowSnapshot) => {
+            buyers.push(rowSnapshot.key);
+          });
+
+          items.push(newItemObj(item.name, item.meta, acl, price, buyers));
         });
 
         const newShop = newShopObj(
@@ -276,12 +286,13 @@ class Header extends React.Component {
   }
 }
 
-const newItemObj = (name, meta, acl, price) => {
+const newItemObj = (name, meta, acl, price, buyers = []) => {
   return {
     name: name,
     meta: meta,
     acl: acl,
-    price: price
+    price: price,
+    buyers: buyers,
   }
 };
 
@@ -294,6 +305,15 @@ const newShopObj = (owner, balance, address, name, description, items) => {
     description: description,
     items: items
   }
+};
+
+const currDatetime = () => {
+  const today = new Date();
+  const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+  const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  const dateTime = date+' '+time;
+
+  return dateTime;
 };
 
 export default ShopUI;
