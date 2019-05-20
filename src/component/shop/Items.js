@@ -1,12 +1,18 @@
 import React from "react";
 
 import BuyItemModal from "./Buy";
+import Authorize from "../authorize/Modal";
 
 class Item extends React.Component {
   constructor(props) {
     super(props);
 
     this.hasAccess = this.hasAccess.bind(this);
+    this.viewFile = this.viewFile.bind(this);
+  }
+
+  viewFile(password) {
+    this.props.onViewFile(this.props.item.meta, this.props.account, password);
   }
 
   hasAccess() {
@@ -15,11 +21,15 @@ class Item extends React.Component {
   }
 
   render() {
-    let BuyOrView = null;
+    let BuyBtn = null;
+    let ViewBtn = null;
+    let ViewBtnAuthorizeModal = null;
+
     if (this.hasAccess()) {
-      BuyOrView = <button type="button" className="btn btn-md btn-success">View</button>;
+      ViewBtn = <button data-toggle="modal" data-target={"#authorizeItemView"+this.props.item.meta} className="btn btn-md btn-success">View</button>;
+      ViewBtnAuthorizeModal = <Authorize id={"authorizeItemView"+this.props.item.meta} onAuthorize={this.viewFile} />;
     } else {
-      BuyOrView = <button data-toggle="modal" data-target={"#buyItem"+this.props.item.acl} type="button" className="btn btn-md btn-primary">Buy</button>;
+      BuyBtn = <button data-toggle="modal" data-target={"#buyItem"+this.props.item.acl} type="button" className="btn btn-md btn-primary">Buy</button>;
     }
 
     return (
@@ -36,7 +46,9 @@ class Item extends React.Component {
               <strong className="text-gray-dark">{this.props.item.name}</strong><br />
               <span>{this.props.item.meta}</span>
             </div>
-            {BuyOrView}
+            {BuyBtn}
+            {ViewBtn}
+            {ViewBtnAuthorizeModal}
           </div>
           <strong><span className="d-block mt-3">{this.props.item.price} PHT</span></strong>
         </div>
@@ -49,7 +61,7 @@ class Items extends React.Component {
   render() {
     const Items = this.props.items.map((item, i) =>
       <div key={i}>
-        <Item item={item} account={this.props.account} shopOwner={this.props.shopOwner} />
+        <Item item={item} account={this.props.account} shopOwner={this.props.shopOwner} onViewFile={this.props.onViewFile} />
         <BuyItemModal shopAddr={this.props.shopAddr} account={this.props.account} name={item.name} acl={item.acl} price={item.price} onBuy={this.props.onBuy} />
       </div>
     );

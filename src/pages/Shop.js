@@ -25,6 +25,7 @@ class ShopUI extends React.Component {
     this.handleCreate = this.handleCreate.bind(this);
     this.handleSell = this.handleSell.bind(this);
     this.handleBuy = this.handleBuy.bind(this);
+    this.viewFile = this.viewFile.bind(this);
   }
 
   handleCreate(name, description, password) {
@@ -115,6 +116,20 @@ class ShopUI extends React.Component {
       .catch((e) => {
         alert(e.toString());
       });
+  }
+
+  viewFile(meta, account, password) {
+    const self = this;
+
+    this.leth.user.signIn(account, password)
+      .then((res) => {
+        const token = res.token;
+
+        window.open(`${self.props.nodeUrl}/storage/fetch?meta=${meta}&token=${token}`);
+      })
+      .catch((e) => {
+        alert(e.toString());
+      })
   }
 
   refreshAccountBalance(account) {
@@ -229,7 +244,8 @@ class ShopUI extends React.Component {
         key={i}
         onRefreshBalance={this.refreshShopBalance}
         onSell={this.handleSell}
-        onBuy={this.handleBuy} />
+        onBuy={this.handleBuy}
+        onViewFile={this.viewFile} />
     );
 
     return (
