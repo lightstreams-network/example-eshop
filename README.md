@@ -2,7 +2,7 @@
 
 Demonstrating how Lightstreams tech stack can be practically used in order to build a decentralized eShop for managing, selling and purchasing of digital content.
 
-This demo example available at https://example-eshop.lightstreams.io and demonstrates the following 2 features:
+This demo example is available at https://example-eshop.lightstreams.io and it demonstrates the following 2 features:
 - [Private file sharing using SmartVault](https://docs.lightstreams.network/getting-started/file-sharing/)
 - [E-Commerce by monetizing the SmartVault content](https://docs.lightstreams.network/getting-started/peer-to-peer-ecommerce/)
 
