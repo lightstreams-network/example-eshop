@@ -1,16 +1,22 @@
 import React from "react";
 import Header from "./Header";
 
+const lethJs = require('lightstreams-js-sdk');
+
 class Auth extends React.Component {
   constructor(props) {
     super(props);
 
+    this.leth = lethJs(props.nodeUrl);
+
     this.state = {
       loginAccount: "0xd119b8b038d3a67d34ca1d46e1898881626a082b",
+      registerPassword: ""
     };
 
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.handleLoginAccountChange = this.handleLoginAccountChange.bind(this);
+    this.handleRegisterAccountChange = this.handleRegisterAccountChange.bind(this);
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
   }
 
@@ -22,6 +28,14 @@ class Auth extends React.Component {
     }));
   }
 
+  handleRegisterAccountChange(event) {
+    const password = event.target.value;
+
+    this.setState((state, props) => ({
+      registerPassword: password
+    }));
+  }
+
   handleLoginSubmit(event) {
     event.preventDefault();
 
@@ -30,6 +44,15 @@ class Auth extends React.Component {
 
   handleRegisterSubmit(event) {
     event.preventDefault();
+
+    const self = this;
+    this.leth.user.signUp(this.state.registerPassword)
+      .then((res) => {
+        self.props.onLogin(res.account);
+      })
+      .catch((e) => {
+        alert(e.toString());
+      });
   }
 
   render() {
@@ -49,7 +72,7 @@ class Auth extends React.Component {
         <form onSubmit={this.handleRegisterSubmit} name="form-register" className="form-signin">
           <h3 className="h3 mb-3 font-weight-normal">New account?</h3>
           <label htmlFor="register-password" className="">Type your password</label>
-          <input value="" type="password" onChange="" id="register-password" name="register-password" className="form-control" />
+          <input value={this.state.registerPassword} type="password" onChange={this.handleRegisterAccountChange} id="register-password" name="register-password" className="form-control" />
 
           <button className="btn btn-lg btn-primary btn-block" type="submit">Create</button>
         </form>
