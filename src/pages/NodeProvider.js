@@ -41,7 +41,7 @@ class NodeProvider extends React.Component {
           We encourage you to run your own full node locally and specify a localhost url such as: <strong>https://localhost:9191</strong>
           < br/>
           < br/>
-          Follow our official <a href="https://docs.lightstreams.network/getting-started/install/#leth">getting started docs!</a>
+          Follow our official <a href="https://docs.lightstreams.network">getting started docs!</a>
         </p>
       </form>
     );
