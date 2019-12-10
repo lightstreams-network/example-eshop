@@ -3,7 +3,7 @@ import React from "react";
 import Shop from "./../component/shop/Shop";
 import NewShopModal from "./../component/shop/New";
 
-const lethJs = require('lightstreams-js-sdk');
+const { Gateway: lethJs } = require('lightstreams-js-sdk');
 const Web3 = require('web3');
 
 class ShopUI extends React.Component {

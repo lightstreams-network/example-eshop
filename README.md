@@ -12,7 +12,7 @@ This demo example is available at https://example-eshop.lightstreams.io and it d
 
 ## Install
 ```
-npm i
+yarn install
 ```
 
 ## Available Scripts
@@ -39,3 +39,10 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
+
+## Deploy
+
+```
+firebase login
+firebase deploy -m "Migrating to latest JS SDK 0.13.0" --only=hosting
+```

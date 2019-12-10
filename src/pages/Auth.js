@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header";
 
-const lethJs = require('lightstreams-js-sdk');
+const { Gateway: lethJs } = require('lightstreams-js-sdk');
 
 class Auth extends React.Component {
   constructor(props) {

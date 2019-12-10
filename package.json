@@ -9,13 +9,13 @@
     "firebase": "^6.0.2",
     "firebase-tools": "^6.9.2",
     "jquery": "^3.4.1",
-    "lightstreams-js-sdk": "git+ssh://git@github.com/lightstreams-network/lightstreams-js-sdk.git#master",
+    "lightstreams-js-sdk": "git+ssh://git@github.com/lightstreams-network/lightstreams-js-sdk.git#0.13.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1",
     "styletron-engine-atomic": "^1.1.2",
     "styletron-react": "^5.0.1",
-    "web3": "^1.0.0-beta.55"
+    "web3": "^1.2.2"
   },
   "scripts": {
     "start": "react-scripts start",
