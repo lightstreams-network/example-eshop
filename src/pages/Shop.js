@@ -119,13 +119,26 @@ class ShopUI extends React.Component {
   }
 
   viewFile(meta, account, password) {
+    this.activateLoading();
+
     const self = this;
 
     this.leth.user.signIn(account, password)
       .then((res) => {
         const token = res.token;
 
-        window.open(`${self.props.nodeUrl}/storage/fetch?meta=${meta}&token=${token}`);
+        self.state.shops.forEach((shop) => {
+          shop.items.forEach((item) => {
+            if (item.meta === meta) {
+              item.url = self.leth.storage.streamUrl(meta, token);
+
+              self.setState((state, props) => ({
+                isLoading: false,
+                shop: shop,
+              }));
+            }
+          });
+        });
       })
       .catch((e) => {
         alert(e.toString());
@@ -309,6 +322,7 @@ const newItemObj = (name, meta, acl, price, buyers = []) => {
     acl: acl,
     price: price,
     buyers: buyers,
+    url: ""
   }
 };
 

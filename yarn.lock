@@ -5736,7 +5736,7 @@ ethereumjs-util@^5.0.0, ethereumjs-util@^5.1.1, ethereumjs-util@^5.1.2, ethereum
     safe-buffer "^5.1.1"
     secp256k1 "^3.0.1"
 
-ethereumjs-util@^6.0.0, ethereumjs-util@^6.1.0:
+ethereumjs-util@^6.0.0, ethereumjs-util@^6.1.0, ethereumjs-util@^6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/ethereumjs-util/-/ethereumjs-util-6.2.0.tgz#23ec79b2488a7d041242f01e25f24e5ad0357960"
   integrity sha512-vb0XN9J2QGdZGIEKG2vXM+kUdEivUfU6Wmi5y0cg+LRhDYKnXIZ/Lz7XjFbHRR9VIKq2lVGLzGBkA++y2nOdOQ==
@@ -9067,9 +9067,9 @@ liftoff@^3.1.0:
     rechoir "^0.6.2"
     resolve "^1.1.7"
 
-"lightstreams-js-sdk@git+ssh://git@github.com/lightstreams-network/lightstreams-js-sdk.git#0.13.0":
-  version "0.13.0"
-  resolved "git+ssh://git@github.com/lightstreams-network/lightstreams-js-sdk.git#2b477c37c9d76d1a40637290efcc1438534b35db"
+"lightstreams-js-sdk@git+ssh://git@github.com/lightstreams-network/lightstreams-js-sdk.git#0.20.0":
+  version "0.19.5"
+  resolved "git+ssh://git@github.com/lightstreams-network/lightstreams-js-sdk.git#ed616d75de5f286d304e50032ff15547683788ed"
   dependencies:
     "@ensdomains/ens" "0.3.11"
     "@ensdomains/resolver" "0.1.9"
@@ -9079,16 +9079,17 @@ liftoff@^3.1.0:
     "@openzeppelin/network" "0.2.9"
     "@openzeppelin/upgrades" "2.5.3"
     cids "^0.7.1"
+    debug "^4.1.1"
     entropy-string "^4.2.0"
     eth-ens-namehash "^2.0.8"
     ethereum-ens "^0.7.7"
-    ethereumjs-util "^6.1.0"
+    ethereumjs-util "^6.2.0"
     ethers "^4.0.36"
     form-data "^2.5.0"
     net "^1.0.2"
     node-fetch "^2.6.0"
     patch-package "^6.2.0"
-    web3 "^1.2.2"
+    web3 "1.2.1"
     web3-provider-engine "15.0.3"
 
 lines-and-columns@^1.1.6:

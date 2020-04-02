@@ -45,5 +45,5 @@ Your app is ready to be deployed!
 ```
 npm run build // don't ask me why the pre-deploy script doesn't work
 firebase login
-firebase deploy -m "Migrating to latest JS SDK 0.13.0" --only=hosting
+firebase deploy -m "Migrating to latest JS SDK 0.20.0" --only=hosting
 ```
