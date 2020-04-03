@@ -11,7 +11,8 @@ class Auth extends React.Component {
 
     this.state = {
       loginAccount: "0xd119b8b038d3a67d34ca1d46e1898881626a082b",
-      registerPassword: ""
+      registerPassword: "",
+      isRegistering: false,
     };
 
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
@@ -45,6 +46,10 @@ class Auth extends React.Component {
   handleRegisterSubmit(event) {
     event.preventDefault();
 
+    this.setState((state, props) => ({
+      isRegistering: true
+    }));
+
     const self = this;
     this.leth.user.signUp(this.state.registerPassword)
       .then((res) => {
@@ -56,6 +61,14 @@ class Auth extends React.Component {
   }
 
   render() {
+    let signUpBtn = <button className="btn btn-lg btn-primary btn-block" type="submit">Create</button>;
+    let isRegisteringMsg = null;
+
+    if (this.state.isRegistering) {
+      signUpBtn = null;
+      isRegisteringMsg = "Registering an account, please wait...";
+    }
+
     return (
       <div>
         <Header />
@@ -74,7 +87,9 @@ class Auth extends React.Component {
           <label htmlFor="register-password" className="">Type your password</label>
           <input value={this.state.registerPassword} type="password" onChange={this.handleRegisterAccountChange} id="register-password" name="register-password" className="form-control" />
 
-          <button className="btn btn-lg btn-primary btn-block" type="submit">Create</button>
+          {signUpBtn}
+          <p>{isRegisteringMsg}</p>
+
         </form>
       </div>
     );

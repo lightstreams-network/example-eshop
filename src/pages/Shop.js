@@ -306,6 +306,8 @@ class Header extends React.Component {
                   <strong>Node:</strong> {this.props.nodeUrl} <br />
                   <strong>Account:</strong> {this.props.account} <br />
                   <strong>Balance:</strong> {this.props.accountBalance} PHT
+
+                <p className={"mt-3"}><a href="https://docs.lightstreams.network/products/smart-vault/getting-started/get-free-test-tokens" target={"_blank"}>Request more tokens</a></p>
               </div>
             </nav>
           </div>
