@@ -38,7 +38,7 @@ class NodeProvider extends React.Component {
 
         <button className="btn btn-lg btn-primary btn-block" type="submit">Enter shop</button>
         <p className="py-4">
-          We encourage you to run your own full node locally and specify a localhost url such as: <strong>https://localhost:9191</strong>
+          Try also running and connecting to a local node with a localhost url such as: <strong>http://localhost:9091</strong>
           < br/>
           < br/>
           Follow our official <a href="https://docs.lightstreams.network">getting started docs!</a>
